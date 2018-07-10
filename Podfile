@@ -8,4 +8,5 @@ target 'num25' do
   # Pods for num25
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
 end

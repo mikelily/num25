@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseFirestore
+import FirebaseAuth
 
 class PlayViewController: UIViewController {
     var playTableVC: PlayTable?
@@ -133,6 +136,36 @@ extension PlayViewController: PlayDelegate {
     func gameEnd() {
         passTimer()
         stateViewVC?.passBtn.isEnabled = false
+        
+        //enter score to Firebase
+        var ref: DocumentReference? = nil
+        let fbdb = Firestore.firestore()
+        let now:Date = Date()
+        let timeInterval:TimeInterval = now.timeIntervalSince1970
+        let time:Int = Int(timeInterval)
+        ref = fbdb.collection(Auth.auth().currentUser!.uid).addDocument(data: [
+            "userID": Auth.auth().currentUser!.uid,
+            "score": sec,
+            "time": time
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
+            }
+        }
+//        ref = fbdb.collection("users").addDocument(data: [
+//            "userID": Auth.auth().currentUser!.uid,
+//            "score": sec,
+//            "time": time
+//        ]) { err in
+//            if let err = err {
+//                print("Error adding document: \(err)")
+//            } else {
+//                print("Document added with ID: \(ref!.documentID)")
+//            }
+//        }
+        
         
         //enter score to db
         
