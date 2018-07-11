@@ -13,10 +13,11 @@ class SignUpViewController: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var nameTextField: UITextField!
     
     @IBAction func signUpBtnAction(_ sender: Any) {
-        if emailTextField.text == "" {
-            let alertController = UIAlertController(title: "Error", message: "請輸入E-mail和密碼", preferredStyle: .alert)
+        if emailTextField.text == "" || nameTextField.text == ""{
+            let alertController = UIAlertController(title: "Error", message: "Please enter all Field", preferredStyle: .alert)
             
             let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alertController.addAction(defaultAction)
@@ -29,6 +30,25 @@ class SignUpViewController: UIViewController {
                 if error == nil {
                     print("註冊成功")
                     //Goes to the Setup page which lets the user take a photo for their profile picture and also chose a username
+                    
+                    var ref: DocumentReference? = nil
+                    
+                    let fbdb = Firestore.firestore()
+                    let settings = fbdb.settings
+                    settings.areTimestampsInSnapshotsEnabled = true
+                    fbdb.settings = settings
+                    
+                    ref = fbdb.collection("uidAndName").addDocument(data: [
+                        "userID": Auth.auth().currentUser!.uid,
+                        "userNickName": self.nameTextField.text!,
+                    ]) { err in
+                        if let err = err {
+                            print("Error adding document: \(err)")
+                        } else {
+                            print("Document added with ID: \(ref!.documentID)")
+                        }
+                    }
+                    
                     
                     let vc = self.storyboard?.instantiateViewController(withIdentifier: "GameTabBarView")
                     self.present(vc!, animated: true, completion: nil)

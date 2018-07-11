@@ -8,8 +8,8 @@
 
 import UIKit
 import Firebase
-import FirebaseFirestore
-import FirebaseAuth
+//import FirebaseFirestore
+//import FirebaseAuth
 
 class PlayViewController: UIViewController {
     var playTableVC: PlayTable?
@@ -139,7 +139,12 @@ extension PlayViewController: PlayDelegate {
         
         //enter score to Firebase
         var ref: DocumentReference? = nil
+        
         let fbdb = Firestore.firestore()
+        let settings = fbdb.settings
+        settings.areTimestampsInSnapshotsEnabled = true
+        fbdb.settings = settings
+        
         let now:Date = Date()
         let timeInterval:TimeInterval = now.timeIntervalSince1970
         let time:Int = Int(timeInterval)
