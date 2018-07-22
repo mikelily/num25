@@ -83,6 +83,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		858DD67E20F797C200392B0C /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				856621B720F505FC00328CFB /* TestViewController.swift */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
 		85903D7620F45FC600E4532E /* Game */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +148,7 @@
 		85F38A5F20CF9E4500E63A6C /* num25 */ = {
 			isa = PBXGroup;
 			children = (
+				858DD67E20F797C200392B0C /* Test */,
 				85903D7720F4961A00E4532E /* Login */,
 				85903D7620F45FC600E4532E /* Game */,
 				85F38A6020CF9E4500E63A6C /* AppDelegate.swift */,
@@ -149,7 +158,6 @@
 				85F38A6C20CF9E4600E63A6C /* Info.plist */,
 				85BE268020D317C300D29A32 /* BridgeHeader.h */,
 				85B5F11C20F2583000F19F44 /* GoogleService-Info.plist */,
-				856621B720F505FC00328CFB /* TestViewController.swift */,
 				8551AB7820F53FD800D1979D /* Scores.swift */,
 			);
 			path = num25;

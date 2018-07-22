@@ -159,18 +159,6 @@ extension PlayViewController: PlayDelegate {
                 print("Document added with ID: \(ref!.documentID)")
             }
         }
-//        ref = fbdb.collection("users").addDocument(data: [
-//            "userID": Auth.auth().currentUser!.uid,
-//            "score": sec,
-//            "time": time
-//        ]) { err in
-//            if let err = err {
-//                print("Error adding document: \(err)")
-//            } else {
-//                print("Document added with ID: \(ref!.documentID)")
-//            }
-//        }
-        
         
         //enter score to db
         
